@@ -3,7 +3,7 @@ using HydroStochRes
 using Plots, ProgressBars
 using StatsBase: autocor
 
-params = SimulationParameters(
+params = SimulationParametersSDE(
     2.0,      # l
     1.0,      # alpha
     10.0,     # beta

@@ -1,10 +1,12 @@
 module HydroStochRes
 
-export SimulationParameters, 
+export SimulationParametersStroboscopic, 
        double_well_potential, 
        gradient_double_well, 
        gradient_bessel, 
+       compute_grad_h!,
        simulate_sde, 
+       simulate_stroboscopic,
        calculate_mfpt, 
        plot_potential_and_gradient_norm, 
        plot_stochastic_trajectory, 

@@ -1,6 +1,6 @@
 using Plots, KernelDensity, LinearAlgebra
 
-function plot_potential_and_gradient_norm(params::SimulationParameters)
+function plot_potential_and_gradient_norm(params::SimulationParametersSDE)
     l, alpha, beta, minima = params.l, params.alpha, params.beta, params.minima
     x = range(-2*l, 2*l, length=100)
     y = range(-1*l, 1*l, length=100)
@@ -14,7 +14,7 @@ function plot_potential_and_gradient_norm(params::SimulationParameters)
     return plt
 end
 
-function plot_stochastic_trajectory(x_traj, y_traj, t_traj, params::SimulationParameters; res=1, n_max=100000)
+function plot_stochastic_trajectory(x_traj, y_traj, t_traj, params::SimulationParametersSDE; res=1, n_max=100000)
     A, ω, ϕ = params.A, params.ω, params.ϕ
     plt_xy = plot(x_traj[1:res:n_max*res], y_traj[1:res:n_max*res], legend=false, xlabel="x", ylabel="y", title="y vs x (noise=0.022)", lw=0.2)
     plt_xt = plot(t_traj[1:res:n_max*res], x_traj[1:res:n_max*res], label="trajectory", xlabel="t", ylabel="x", title="x vs t (noise=0.022)", lw=0.5)
@@ -34,7 +34,7 @@ function plot_kde(x_traj, y_traj)
     return plt_kde
 end
 
-function plot_psd(x_traj, params::SimulationParameters)
+function plot_psd(x_traj, params::SimulationParametersSDE)
     ps_f, ps_p = compute_power_spectrum(x_traj, params)
     plot(ps_f[2:1:100000], ps_p[2:1:100000], xscale=:log10, yscale=:log10, xlabel="Frequency", ylabel="Power Spectral Density", title="Power Spectrum", legend=false)
 end
